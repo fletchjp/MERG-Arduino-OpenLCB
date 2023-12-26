@@ -29,5 +29,6 @@
  
  The other is to sort out a structure for the use of EEPROM so that the data for the two buses does not overlap.
  
+ There is a problem to be resolved for use of external in that both buses need access. Only one initiation of the SPI is needed.
  
  
