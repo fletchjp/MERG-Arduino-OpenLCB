@@ -19,3 +19,15 @@
  
  A copy of the basic example from the OpenLCB_Single_Thread library.
  
+ ## OlcbBridgeNode
+ 
+ This is intended to be a bridge node supporting both OpenLCB and CBUS using an Arduino DUE with two CAN ports.
+ 
+ This involves a number of design choices which have yet to be sorted out.
+ 
+ One is to decide which CAN port to use for which bus system. It may be easier to have OpenLCB on CAN0 and CBUS on CAN1.
+ 
+ The other is to sort out a structure for the use of EEPROM so that the data for the two buses does not overlap.
+ 
+ 
+ 
