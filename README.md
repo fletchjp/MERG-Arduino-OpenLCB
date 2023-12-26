@@ -7,6 +7,6 @@
  
  I am going to develop my own example uses here.
  
- John Fletcher <M6777> john@bunbury28.plus.com
+ John Fletcher \<M6777\> john@bunbury28.plus.com
  
  
