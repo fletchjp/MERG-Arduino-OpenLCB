@@ -29,6 +29,6 @@
  
  The other is to sort out a structure for the use of EEPROM so that the data for the two buses does not overlap.
  
- There is a problem to be resolved for use of external EEPROM in that both buses need access. Only one initiation of the I2C is needed.
+ There is a problem to be resolved for use of external EEPROM in that both buses need access. Only one initiation of the I2C is needed. One solution could be to use the CBUS configuration library for all cases.
  
  
