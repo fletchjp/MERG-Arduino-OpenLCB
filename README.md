@@ -3,7 +3,7 @@
  
  I am going to build my own examples using the OpenLCB_Single_Thread library.
  
- I have added DUE capability to that which is as yet untested.
+ I have added DUE capability to that which is as yet untested. This needs to have an external EEPROM option added.
  
  I am going to develop my own example uses here.
  
