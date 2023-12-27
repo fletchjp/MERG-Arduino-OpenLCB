@@ -210,6 +210,11 @@ void produceFromInputs() {
     #ifdef NEW_NODEID
       NodeID newNodeID(NEW_NODEID);
       nm.changeNodeID(&newNodeID);
+      #ifdef __SAM3X8E__
+        #ifdef DEBUG
+          Serial << F("After newNodeID") << endl;
+        #endif
+      #endif
     #endif
   
     #ifdef RESET_TO_FACTORY_DEFAULTS
