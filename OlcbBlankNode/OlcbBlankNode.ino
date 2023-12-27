@@ -6,10 +6,15 @@
 //   David Harris 2019, adapted from
 //   Bob Jacobsen 2010, 2012
 //      based on examples by Alex Shepherd and David Harris
+//
+//   Adapted by John Fletcher 2023 to add more diagnostics.
 //==============================================================
 
 #define DEBUG    // comment out, if not wanted
 #define OLCB_NO_BLUE_GOLD
+
+// 3rd party libraries
+#include <Streaming.h>
 
 //************ USER DEFINITIONS ************************************
 
@@ -37,7 +42,7 @@
 //  a set and unset.
 #define NUM_EVENT 2*NUM_CHANNEL
 
-//************** End of USER DEFINTIONS *****************************
+//************** End of USER DEFINITIONS *****************************
   
 #include "processor.h"            // auto-selects the processor type, and CAN lib, EEPROM lib etc.  
 #include "OpenLcbCore.h"
@@ -195,6 +200,10 @@ void produceFromInputs() {
       Serial.begin(115200);
       delay(1000);
       Serial.print(F("\nOlcbBlankNode\n"));
+      Serial << __FILE__ << endl;
+      #ifdef __SAM3X8E__
+         Serial << F("running on Arduino DUE") << endl;
+      #endif
       delay(1000);
     #endif
   
@@ -210,16 +219,24 @@ void produceFromInputs() {
     #endif
   
     #ifdef DEBUG
-    nm.print();
+      nm.print();
+      Serial.print(F("At end of Setup()"));
     #endif
   }
 
 // ==== MAIN LOOP ===========================================
 //  -- this performs system functions, such as CAN alias maintenence
   void loop() {
-    
+    #ifdef __SAM3X8E__
+      #ifdef DEBUG
+        Serial << F("Before Olcb_process()") << endl;
+      #endif
+    #endif
     bool activity = Olcb_process();     // System processing happens here, with callbacks for app action.
     #ifdef DEBUG
+      #ifdef __SAM3X8E__
+        Serial << F("After Olcb_process()") << endl;
+      #endif
       static unsigned long T = millis()+5000;
       if(millis()>T) {
          T+=5000;
