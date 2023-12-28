@@ -11,6 +11,7 @@
 //==============================================================
 
 #define DEBUG    // comment out, if not wanted
+//#define LIB_DEBUG_PRINT_ENABLE // Debug from the libraries.
 #define OLCB_NO_BLUE_GOLD
 
 // 3rd party libraries
@@ -209,16 +210,18 @@ void produceFromInputs() {
   
     #ifdef NEW_NODEID
       NodeID newNodeID(NEW_NODEID);
-      nm.changeNodeID(&newNodeID);
-      #ifdef __SAM3X8E__
-        #ifdef DEBUG
+      nm.changeNodeID(&newNodeID);  
+      #ifdef DEBUG
           Serial << F("After newNodeID") << endl;
-        #endif
+          nm.print();
       #endif
     #endif
   
     #ifdef RESET_TO_FACTORY_DEFAULTS
       Olcb_init(1);
+      #ifdef DEBUG
+          Serial << F("Reset to factory defaults") << endl;
+      #endif
     #else
       Olcb_init(0);
     #endif
