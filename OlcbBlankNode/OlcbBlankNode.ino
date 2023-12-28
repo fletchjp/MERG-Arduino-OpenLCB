@@ -205,6 +205,7 @@ void produceFromInputs() {
       #ifdef __SAM3X8E__
          Serial << F("running on Arduino DUE") << endl;
       #endif
+      setDebugStream(&Serial);
       delay(1000);
     #endif
   
