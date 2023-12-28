@@ -16,4 +16,5 @@ This copy has extra output to document its use.
 
 At present this **CRASHES** when used with a **DUE** and locks a flash page.
 
+I have added output to the DebugStream and I am using the code compiled for an Arduino UNO to find out more about how it works.
 
