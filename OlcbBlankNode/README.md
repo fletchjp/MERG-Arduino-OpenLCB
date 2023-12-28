@@ -1,4 +1,4 @@
-**OlcbBlankNode**
+# OlcbBlankNode
 
 This is a minimal sketch that can be expanded for applications.  
 
@@ -8,4 +8,12 @@ which are standard practice.
 It has empty definitions for **buttons[]**, **pceCallback(unsigned int index)**, **produceFromInputs()**, **userInitAll()**, 
 and **userConfigWritten()**, etc. 
 
-Other more developed sketches may be easier to modify.  
+Other more developed sketches may be easier to modify.
+
+## Modification
+
+This copy has extra output to document its use.
+
+At present this **CRASHES** when used with a **DUE** and locks a flash page.
+
+
