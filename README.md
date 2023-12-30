@@ -35,5 +35,5 @@
  
  Central to the plans is the need to support configuration on the Arduino DUE. There are two ways to do this, using the DueFlashStorage library and using an external EEPROM.
  
- I have adapted code to work with the DueFlashStorage library which at the moment is not working. I need to do some tests on my implementation.
+ I have adapted code to work with the DueFlashStorage library which is now working. I have done some tests to develop my implementation.
  
