@@ -31,4 +31,9 @@
  
  There is a problem to be resolved for use of external EEPROM in that both buses need access. Only one initiation of the I2C is needed. One solution could be to use the CBUS configuration library for all cases.
  
+ ## EEPROM on the DUE
+ 
+ Central to the plans is the need to support configuration on the Arduino DUE. There are two ways to do this, using the DueFlashStorage library and using an external EEPROM.
+ 
+ I have adapted code to work with the DueFlashStorage library which at the moment is not working. I need to do some tests on my implementation.
  
