@@ -240,7 +240,8 @@ void produceFromInputs() {
   
     #ifdef DEBUG
       nm.print();
-      Serial.print(F("At end of Setup()"));
+      Serial.print(F("At end of Setup()\n"));
+      Serial.flush();
     #endif
   }
 
@@ -250,17 +251,20 @@ void produceFromInputs() {
     #ifdef __SAM3X8E__
       #ifdef DEBUG
         Serial << F("Before Olcb_process()") << endl;
+        Serial.flush();
       #endif
     #endif
     bool activity = Olcb_process();     // System processing happens here, with callbacks for app action.
     #ifdef DEBUG
       #ifdef __SAM3X8E__
         Serial << F("After Olcb_process()") << endl;
+        Serial.flush();
       #endif
       static unsigned long T = millis()+5000;
       if(millis()>T) {
          T+=5000;
          Serial.print("\n.");
+         Serial.flush();
       }
     #endif
   
