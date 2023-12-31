@@ -214,7 +214,9 @@ void produceFromInputs() {
     #endif
     #ifdef DUE
       // This is needed to choose between CAN interfaces 0 or 1.
-      olcbcanTx.setControllerInstance(0);
+      byte controllerInstance = 0;
+      olcbcanTx.setControllerInstance(controllerInstance);
+      Serial << "CAN controller set as " << controllerInstance << endl;
     #endif
   
     #ifdef NEW_NODEID
