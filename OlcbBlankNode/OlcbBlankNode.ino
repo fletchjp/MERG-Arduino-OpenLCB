@@ -212,6 +212,10 @@ void produceFromInputs() {
       setDebugStream(&Serial);
       delay(1000);
     #endif
+    #ifdef DUE
+      // This is needed to choose between CAN interfaces 0 or 1.
+      olcbcanTx.setControllerInstance(0);
+    #endif
   
     #ifdef NEW_NODEID
       NodeID newNodeID(NEW_NODEID);
