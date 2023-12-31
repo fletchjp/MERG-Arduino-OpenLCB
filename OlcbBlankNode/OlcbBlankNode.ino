@@ -226,7 +226,7 @@ void produceFromInputs() {
       //Serial << F("Before changeNodeID") << endl;
       nm.changeNodeID(&newNodeID);  
       #ifdef DEBUG
-          Serial << F("After changeNodeID") << endl;
+          //Serial << F("After changeNodeID") << endl;
           nm.print();
       #endif
     #endif
