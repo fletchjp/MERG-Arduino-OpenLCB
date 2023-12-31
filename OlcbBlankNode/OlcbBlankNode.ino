@@ -207,21 +207,23 @@ void produceFromInputs() {
       #ifdef __SAM3X8E__
          Serial << F("running on Arduino DUE") << endl;
       #endif
-      Serial << "Size of EVENT_SPACE_HEADER " << sizeof(EVENT_SPACE_HEADER) << endl;
-      Serial << "Size of NODE_ID_STORE " << sizeof(NODE_ID_STORE) << endl;
+      //Serial << "Size of EVENT_SPACE_HEADER " << sizeof(EVENT_SPACE_HEADER) << endl;
+      //Serial << "Size of NODE_ID_STORE " << sizeof(NODE_ID_STORE) << endl;
       setDebugStream(&Serial);
       delay(1000);
     #endif
     #ifdef DUE
       // This is needed to choose between CAN interfaces 0 or 1.
+      // Note that it has to be done separately for Tx and Rx.
       byte controllerInstance = 0;
       olcbcanTx.setControllerInstance(controllerInstance);
-      Serial << "CAN controller set as " << controllerInstance << endl;
+      olcbcanRx.setControllerInstance(controllerInstance);
+      Serial << "CAN controllers set as " << controllerInstance << endl;
     #endif
   
     #ifdef NEW_NODEID
       NodeID newNodeID(NEW_NODEID);
-      Serial << F("Before changeNodeID") << endl;
+      //Serial << F("Before changeNodeID") << endl;
       nm.changeNodeID(&newNodeID);  
       #ifdef DEBUG
           Serial << F("After changeNodeID") << endl;
@@ -250,15 +252,15 @@ void produceFromInputs() {
   void loop() {
     #ifdef __SAM3X8E__
       #ifdef DEBUG
-        Serial << F("Before Olcb_process()") << endl;
-        Serial.flush();
+        //Serial << F("Before Olcb_process()") << endl;
+        //Serial.flush();
       #endif
     #endif
     bool activity = Olcb_process();     // System processing happens here, with callbacks for app action.
     #ifdef DEBUG
       #ifdef __SAM3X8E__
-        Serial << F("After Olcb_process()") << endl;
-        Serial.flush();
+        //Serial << F("After Olcb_process()") << endl;
+        //Serial.flush();
       #endif
       static unsigned long T = millis()+5000;
       if(millis()>T) {
