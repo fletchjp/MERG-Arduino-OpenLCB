@@ -21,6 +21,8 @@
  
  ## OlcbBridgeNode
  
+ This is an intention which has not yet been started.
+ 
  This is intended to be a bridge node supporting both OpenLCB and CBUS using an Arduino DUE with two CAN ports.
  
  This involves a number of design choices which have yet to be sorted out.
