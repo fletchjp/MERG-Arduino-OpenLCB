@@ -14,7 +14,8 @@ Other more developed sketches may be easier to modify.
 
 This copy has extra output to document its use.
 
-At present this **CRASHES** when used with a **DUE** and locks a flash page.
-
 I have added output to the DebugStream and I am using the code compiled for an Arduino UNO to find out more about how it works.
 
+This code is now running using the simulated EEPROM available with the Arduino DUE.
+
+As the DUE has two CAN ports the user code has to chose which one to use. This is done with calls to setControllerInstance. Without these two calls the code does not work.
