@@ -216,6 +216,7 @@ void produceFromInputs() {
       // This is needed to choose between CAN interfaces 0 or 1.
       // Note that it has to be done separately for Tx and Rx.
       // I am wondering if I can hide this DUE specific code from the user.
+      // I could do this in a constructor for the CAN interface.
       byte controllerInstance = 0;
       olcbcanTx.setControllerInstance(controllerInstance);
       olcbcanRx.setControllerInstance(controllerInstance);
