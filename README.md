@@ -37,3 +37,8 @@
  
  I have adapted code to work with the DueFlashStorage library which is now working. I have done some tests to develop my implementation.
  
+ ## DUE implementation
+ 
+ I have now sorted out various errors with the DUE implementation which is now working on the BlankNode example.
+ 
+ 
