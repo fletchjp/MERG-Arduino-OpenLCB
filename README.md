@@ -13,11 +13,11 @@
  
  ## OlcbBlankNode
  
- A copy of the blank example from the OpenLCB_Single_Thread library.
+ A copy of the blank example from the OpenLCB_Single_Thread library. This now runs with an Arduino DUE.
  
  ## OlcbBasicNode
  
- A copy of the basic example from the OpenLCB_Single_Thread library.
+ A copy of the basic example from the OpenLCB_Single_Thread library. Modifications started to run with Arduino DUE.
  
  ## OlcbBridgeNode
  
