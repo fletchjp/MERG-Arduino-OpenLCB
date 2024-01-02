@@ -204,8 +204,8 @@ void produceFromInputs() {
       delay(1000);
       Serial.print(F("\nOlcbBlankNode\n"));
       Serial << __FILE__ << endl;
-      #ifdef __SAM3X8E__
-         Serial << F("running on Arduino DUE") << endl;
+      #ifdef DUE
+          Serial << F("running on Arduino DUE") << endl;
       #endif
       //Serial << "Size of EVENT_SPACE_HEADER " << sizeof(EVENT_SPACE_HEADER) << endl;
       //Serial << "Size of NODE_ID_STORE " << sizeof(NODE_ID_STORE) << endl;
