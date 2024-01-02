@@ -15,5 +15,5 @@ For example, the AVR328 expects buttonleds on pins 14-19, while a Tiva123 uses i
 
 ## Modifications
 
-None yet. I need to add information about how to configure a DUE.
+I have added code to configure for a DUE.
 
