@@ -274,11 +274,26 @@ void setup() {
     while(!Serial){}
     delay(250);Serial.begin(115200);dP(F("\nOlcbBasicNode\n"));
     delay(1000);
+    #ifdef DUE
+        Serial << F("running on Arduino DUE") << endl;
+    #endif
+    setDebugStream(&Serial);
   #endif
 
 #ifdef NEW_NODEID
   NodeID newNodeID(NEW_NODEID);
   nm.changeNodeID(&newNodeID);
+#endif
+
+#ifdef DUE
+      // This is needed to choose between CAN interfaces 0 or 1.
+      // Note that it has to be done separately for Tx and Rx.
+      // I am wondering if I can hide this DUE specific code from the user.
+      // I could do this in a constructor for the CAN interface.
+      byte controllerInstance = 0;
+      olcbcanTx.setControllerInstance(controllerInstance);
+      olcbcanRx.setControllerInstance(controllerInstance);
+      Serial << "CAN controllers set as " << controllerInstance << endl;
 #endif
 
 #ifdef RESET_TO_FACTORY_DEFAULTS  
