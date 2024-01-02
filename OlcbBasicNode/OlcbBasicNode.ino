@@ -6,6 +6,8 @@
 //   David Harris 2019, adapted from
 //   Bob Jacobsen 2010, 2012
 //      based on examples by Alex Shepherd and David Harris
+//
+//   Adapted by John Fletcher 2023 to work with Arduino DUE 
 //==============================================================
 
 #define DEBUG    // comment out, if not wanted
