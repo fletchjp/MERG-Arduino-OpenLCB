@@ -18,7 +18,7 @@
 // Node ID --- this must come from a range controlled by the user.  
 // See: http://registry.openlcb.org/uniqueidranges
 // Uncomment the NEW_NODEID line below to force the NodeID to be written to the board 
-//#define NEW_NODEID 2,1,13,0,0,0x07   // DIY range example, not for global use.  
+#define NEW_NODEID 2,1,13,0,0,0x07   // DIY range example, not for global use.  
 
 // Uncomment to Force Reset to Factory Defaults
 //#define RESET_TO_FACTORY_DEFAULTS 1
@@ -275,7 +275,7 @@ void setup() {
     delay(250);Serial.begin(115200);dP(F("\nOlcbBasicNode\n"));
     delay(1000);
     #ifdef DUE
-        Serial << F("running on Arduino DUE") << endl;
+        Serial.println("running on Arduino DUE");
     #endif
     setDebugStream(&Serial);
   #endif
@@ -293,7 +293,8 @@ void setup() {
       byte controllerInstance = 0;
       olcbcanTx.setControllerInstance(controllerInstance);
       olcbcanRx.setControllerInstance(controllerInstance);
-      Serial << "CAN controllers set as " << controllerInstance << endl;
+      Serial.print("CAN controllers set as ");
+      Serial.println(controllerInstance);
 #endif
 
 #ifdef RESET_TO_FACTORY_DEFAULTS  
