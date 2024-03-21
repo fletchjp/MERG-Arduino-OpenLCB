@@ -11,7 +11,7 @@
 //==============================================================
 
 #define DEBUG    // comment out, if not wanted
-//#define OLCB_NO_BLUE_GOLD
+#define OLCB_NO_BLUE_GOLD
 
 //************ USER DEFINITIONS ************************************
 
