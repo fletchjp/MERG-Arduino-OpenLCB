@@ -197,7 +197,7 @@ void produceFromInputs() {
   void setup() {
     #ifdef DEBUG
       // set up serial comm; may not be space for this!
-      if (!Serial) {}
+      while (!Serial) {}
       delay(1000);
       Serial.begin(115200);
 
