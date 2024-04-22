@@ -59,3 +59,7 @@
  
  There is a problem to be resolved for use of external EEPROM in that both buses need access. Only one initiation of the I2C is needed. One solution could be to use the CBUS configuration library for all cases.
  
+ Since I wrote that I have been introduced to the idea of using FRAM. That can work with I2C or SPI. If I had two on separate links they can be configured independently.
+ 
+ 
+ 
