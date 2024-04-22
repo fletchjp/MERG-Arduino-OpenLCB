@@ -13,6 +13,9 @@
 #define DEBUG    // comment out, if not wanted
 #define OLCB_NO_BLUE_GOLD
 
+// 3rd party libraries
+#include <Streaming.h>
+
 //************ USER DEFINITIONS ************************************
 
 // Node ID --- this must come from a range controlled by the user.  
@@ -272,8 +275,11 @@ void setup() {
   #ifdef DEBUG
     // set up serial comm; may not be space for this!
     while(!Serial){}
-    delay(250);Serial.begin(115200);dP(F("\nOlcbBasicNode\n"));
     delay(1000);
+    Serial.begin(115200);
+    Serial.print(F("\nOlcbBasicNode\n"));
+    delay(1000);
+    Serial << __FILE__ << endl;
     #ifdef DUE
         Serial.println("running on Arduino DUE");
     #endif
