@@ -138,9 +138,11 @@ uint8_t CanX::write() { return this->write(0); }
 //
 
 void CanX::setControllerInstance(byte instance) {
-
-  // Serial << "> setting CAN controller instance to " << instance << endl;
-  _instance = instance;
+  // Only 0 and 1 are valid values. All others value are replaced by 0. 
+  if (instance == 1) 
+     _instance = instance;
+  else _instance = 0;
+  // Serial << "> setting CAN controller instance to " << _instance << endl;
   _can = (_instance == 0) ? &Can0 : &Can1;
 }
 
