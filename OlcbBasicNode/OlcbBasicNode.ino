@@ -42,7 +42,19 @@
 
 //************** End of USER DEFINTIONS *****************************
   
-#include "processor.h"            // auto-selects the processor type, and CAN lib, EEPROM lib etc.  
+#include "processor.h"            // auto-selects the processor type, and CAN lib, EEPROM lib etc.
+// Checking up on what is defined by a UNO.
+// I think there is a bug in processor.h as __AVR_ATmega328P__ is tested twice.
+#ifdef ENABLE_MESSAGE_PRAGMAS 
+#ifdef __AVR_ATmega328__
+    #pragma message("ATMega328 defined")
+#elif defined(__AVR_ATmega328P__)
+    #pragma message("ATMega328P defined")
+#elif defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
+    #pragma message("ATMega 1280 or 2560 defined")
+#endif
+#endif
+
 #include "OpenLcbCore.h"
 #include "OpenLCBHeader.h"        // System house-keeping.
 
