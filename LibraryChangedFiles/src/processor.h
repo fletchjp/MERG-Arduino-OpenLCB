@@ -10,9 +10,12 @@
 #define ENABLE_MESSAGE_PRAGMAS
 
 //#pragma message("!!! compiling processor_h")
-
+#ifndef ESP32
 #define EEPROMbegin
 #define EEPROMcommit
+#else
+#define ESTRING(s) s          // default conversion - nil
+#endif 
 // #define ESTRING(s) s          // default conversion - nil
 //#define ESTRING(s) F(s)     // alternate def
 //#define ESTRING(s) PSTR(s)  // alternate def
@@ -51,6 +54,9 @@
 // Mega 128, 1280 & 2560
 #elif defined(__AVR_ATmega128__) || defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
     #include "MCP2515/MCPcan.h"
+#ifdef ENABLE_MESSAGE_PRAGMAS 
+    #pragma message("ATMega 1280 or 2560 selected")
+#endif
 
 // Sanguino
 #elif defined(__AVR_ATmega644__) || defined(__AVR_ATmega644P__) || defined(__AVR_ATmega1284P__)
@@ -144,12 +150,16 @@
 #ifdef ENABLE_MESSAGE_PRAGMAS 
     #pragma message("ARDUINO_ARCH_ESP32 selected ")
 #endif
+#ifndef ESP32
     #define ESP32
+#endif
     #include "ESP32/ESPcan.h"
     #define RAMEND 0x7FFFF
     #define REBOOT esp_restart()
-    //#include "ESPeeprom.h"
-    #include "EEPROM.h"
+	#define NO_GLOBAL_EEPROM
+    #include "ESP32/ESPeeprom.h"
+	extern ESPeeprom EEPROM;
+    //#include "EEPROM.h"
     #define EEPROMbegin EEPROM.begin(1000)
     #define EEPROMcommit EEPROM.commit()
 #elif defined __SAM3X8E__
