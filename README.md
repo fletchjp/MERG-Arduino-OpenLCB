@@ -16,6 +16,12 @@
  I now have a fork of this library which is where I am assembling the changes I am making to the library.
  
  There is also a working copy in the Arduino/libraries folder which is the one used when the examples are compiled.
+ 
+ ## October 2024
+ 
+ The library has now been updated to release 0.0.3 which incorporates some of my changes for the DUE.
+ 
+ It also has some other changes and my examples now need to be updated to reflect that.
 
  ### DUE implementation
  
