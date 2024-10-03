@@ -19,9 +19,17 @@
  
  ## October 2024
  
+ ### 0.1.0
+ 
+ I am now going to start using 0.1.0 in libraries. Earlier changes to the file are now copied here where needed.
+ 
+ ### 0.0.3 
+ 
  The library has now been updated to release 0.0.3 which incorporates some of my changes for the DUE.
  
  It also has some other changes and my examples now need to be updated to reflect that.
+ 
+ I have now copied my changes for 0.0.3 here.
 
  ### DUE implementation
  
@@ -41,7 +49,9 @@
  
  David Harris says that this is work in progress.
  
- ## Examples
+ ## Examples from old version now moved to LibraryChangedFiles folder.
+ 
+ New copies for 0.1.0 library will appear here.
  
  ### OlcbBlankNode
  
