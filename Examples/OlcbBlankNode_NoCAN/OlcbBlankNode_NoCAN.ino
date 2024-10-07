@@ -1,4 +1,5 @@
-
+// OlcbBlankNode_noCAN.ino
+// Using no CAN and accessing JMRI directly.
 //==============================================================
 // OlcbBlankNode
 //   A prototype of a basic no-channel OpenLCB board
@@ -15,7 +16,9 @@
 
 //// Allow direct to JMRI via USB, without CAN controller, comment out for CAN
 //   Note: disable debugging AND WifiGC if this is chosen
-//#include "GCSerial.h"  
+#include "GCSerial.h"  
+#define GCSerial
+#define NOCAN
 
 #define OLCB_NO_BLUE_GOLD
 
