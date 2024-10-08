@@ -1,6 +1,6 @@
-**OlcbBlankNode**
+**OlcbBlankNode_NoCAN**
 
-This is a minimal sketch that can be expanded for applications.  
+This is a minimal sketch that can be expanded for applications. Modified to work without a CAN connection.
 
 It has no user CDI defined, nor memStruct, but does demonstrate that there is are minimal fields for nodeName and nodeDesc, 
 which are standard practice.  
