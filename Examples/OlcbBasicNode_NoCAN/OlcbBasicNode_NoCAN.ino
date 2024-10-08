@@ -1,4 +1,5 @@
-
+// OlcbBasicNode_noCAN.ino
+// Using no CAN and accessing JMRI directly.
 //==============================================================
 // OlcbBasicNode
 //   A prototype of a basic 4-channel OpenLCB board
@@ -17,11 +18,11 @@
 //// Send GC to Serial
 //// To allow direct to JMRI via USB, without CAN controller,
 //   note: disable debugging if this option is chosen
-//#include "GCSerial.h"
+#include "GCSerial.h"
 
-//#define NOCAN    // this may be needed if errors occur with GCSerial
+#define NOCAN    // this may be needed if errors occur with GCSerial
 
-//#define OLCB_NO_BLUE_GOLD       // uncomment to disable blue/gold
+#define OLCB_NO_BLUE_GOLD       // uncomment to disable blue/gold
 
 //************ USER DEFINITIONS ************************************
 
