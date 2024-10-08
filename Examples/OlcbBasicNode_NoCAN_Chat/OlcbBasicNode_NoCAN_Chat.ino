@@ -5,6 +5,7 @@
 // I am going to have to sort something out.
 // I could start with a more basic example which just does a blink
 // and can be configured without the Serial input.
+// For the moment I have set this up to respond to PJON input by flashing an LED.
 //==============================================================
 // PJON things
 /* Set synchronous response timeout to 200 milliseconds.
@@ -26,7 +27,7 @@
 
 #include <PJONSoftwareBitBang.h>
 
-PJONSoftwareBitBang bus(0);
+PJONSoftwareBitBang bus(50); // Given a number so no config needed.
 
 uint8_t packet[100];
 String string_number;
@@ -37,14 +38,15 @@ uint8_t recipient = 0;
 
 void receiver_function(uint8_t *payload, uint16_t length, const PJON_Packet_Info &packet_info) {
   if(payload[0] == 'X') {
-    Serial.println("BLINK");
-    Serial.flush();
+    //Serial.println("BLINK");
+    //Serial.flush();
     digitalWrite(LED_BUILTIN, HIGH);
     delay(30);
     digitalWrite(LED_BUILTIN, LOW);
     bus.reply("X", 1);
   }
   // Received messages sender id and content are printed here
+  /*
   if(packet_info.tx.id == recipient || packet_info.tx.id == PJON_BROADCAST) {
     Serial.print("user ");
     Serial.print(packet_info.tx.id);
@@ -53,8 +55,10 @@ void receiver_function(uint8_t *payload, uint16_t length, const PJON_Packet_Info
       Serial.print((char)payload[i]);
     Serial.println();
   }
+  */
 };
 
+/*
 void error_handler(uint8_t code, uint16_t data, void *custom_pointer) {
   if(code == PJON_CONNECTION_LOST) {
     Serial.print("Connection with device ID ");
@@ -72,7 +76,7 @@ void error_handler(uint8_t code, uint16_t data, void *custom_pointer) {
     Serial.println(data);
   }
 };
-
+*/
 
 //==============================================================
 // OlcbBasicNode
@@ -351,6 +355,14 @@ void userConfigWritten(uint32_t address, uint16_t length, uint16_t func) {
 // ==== Setup does initial configuration =============================
 void setup() {
   
+// PJON setup
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, LOW); // Initialize LED 13 to be off
+
+  bus.strategy.set_pin(12);
+  bus.begin();
+  bus.set_receiver(receiver_function);
+
   #ifdef DEBUG
     // set up serial comm; may not be space for this!
     while(!Serial); delay(250);Serial.begin(115200);
@@ -377,6 +389,9 @@ void setup() {
 //  -- this performs system functions, such as CAN alias maintenence
 void loop() {
   
+  // PJON
+  bus.receive(1000);
+
   bool activity = Olcb_process();     // System processing happens here, with callbacks for app action.
   #ifdef DEBUG
     static unsigned long T = millis()+5000;
