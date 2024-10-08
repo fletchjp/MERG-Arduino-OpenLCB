@@ -1,5 +1,79 @@
-// OlcbBasicNode_noCAN.ino
+// OlcbBasicNode_noCAN_Chat.ino
 // Using no CAN and accessing JMRI directly.
+// Adding PJON chat code.
+// I have a problem as the chat code uses Serial.
+// I am going to have to sort something out.
+// I could start with a more basic example which just does a blink
+// and can be configured without the Serial input.
+//==============================================================
+// PJON things
+/* Set synchronous response timeout to 200 milliseconds.
+   If operating at less than 9600Bd TS_RESPONSE_TIME_OUT should be longer */
+#define TS_RESPONSE_TIME_OUT 200000
+
+/* Include the packet id feature to support packet duplication avoidance i.e.
+   avoid cases where a missed acknowledgement because of range or interference
+   can lead to message duplications:
+   user 1: Ciao!
+   user 1: Ciao!
+   user 1: Ciao! */
+#define PJON_INCLUDE_PACKET_ID
+
+/* Use 63 characters maximum packet length.
+   HC-12 has two 64-byte Rx and Tx FIFO memories built into the chip,
+   supporting up to 64 bytes maximum packet length */
+#define PJON_PACKET_MAX_LENGTH 63
+
+#include <PJONSoftwareBitBang.h>
+
+PJONSoftwareBitBang bus(0);
+
+uint8_t packet[100];
+String string_number;
+int req_index = 0;
+bool parse_id = true;
+bool initialized = false;
+uint8_t recipient = 0;
+
+void receiver_function(uint8_t *payload, uint16_t length, const PJON_Packet_Info &packet_info) {
+  if(payload[0] == 'X') {
+    Serial.println("BLINK");
+    Serial.flush();
+    digitalWrite(LED_BUILTIN, HIGH);
+    delay(30);
+    digitalWrite(LED_BUILTIN, LOW);
+    bus.reply("X", 1);
+  }
+  // Received messages sender id and content are printed here
+  if(packet_info.tx.id == recipient || packet_info.tx.id == PJON_BROADCAST) {
+    Serial.print("user ");
+    Serial.print(packet_info.tx.id);
+    Serial.print((packet_info.rx.id == PJON_BROADCAST) ? " " : ": ");
+    for(uint16_t i = 0; i < length; i++)
+      Serial.print((char)payload[i]);
+    Serial.println();
+  }
+};
+
+void error_handler(uint8_t code, uint16_t data, void *custom_pointer) {
+  if(code == PJON_CONNECTION_LOST) {
+    Serial.print("Connection with device ID ");
+    Serial.print(bus.packets[data].content[0], DEC);
+    Serial.println(" is lost.");
+  }
+  if(code == PJON_PACKETS_BUFFER_FULL) {
+    Serial.print("Packet buffer is full, has now a length of ");
+    Serial.println(data, DEC);
+    Serial.println("Possible wrong bus configuration!");
+    Serial.println("higher PJON_MAX_PACKETS if necessary.");
+  }
+  if(code == PJON_CONTENT_TOO_LONG) {
+    Serial.print("Content is too long, length: ");
+    Serial.println(data);
+  }
+};
+
+
 //==============================================================
 // OlcbBasicNode
 //   A prototype of a basic 4-channel OpenLCB board
