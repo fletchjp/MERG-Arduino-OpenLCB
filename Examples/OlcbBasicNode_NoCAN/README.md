@@ -1,6 +1,6 @@
 # OlcbBasicNode Sketch
 
-This sketch demonstrates most of the functionality of this library.  
+This sketch demonstrates most of the functionality of this library. Changed to work with no CAN connection.
 
 * It implements 2 inputs and 2 outputs
 * It uses ButtonLED library to implement an input and output on one pin
