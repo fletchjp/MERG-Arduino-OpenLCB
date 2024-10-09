@@ -1,6 +1,6 @@
 /// @file TransmitterWithErrorHandler.ino
 /// @brief Transmitter with error handler from Transmitter1 in Any/MultiStrategyLink
-/// Version to work with the OlcbBasicNode example.
+/// Version to work with the OlcbBasicNode example which is node 50.
 
 #include <PJONSoftwareBitBang.h>
 
