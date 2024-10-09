@@ -14,11 +14,15 @@ void error_handler(uint8_t code, uint16_t data, void *custom_pointer) {
   }
 };
 
+int count = 0;
+
 void receiver_function(uint8_t *payload, uint16_t length, const PJON_Packet_Info &packet_info) {
   /* Make use of the payload before sending something, the buffer where payload points to is
      overwritten when a new message is dispatched */
   if(payload[0] == 'X') {
-    Serial.println("BLINK");
+    count++;
+    Serial.print("BLINK ");
+    Serial.println(count);
     // Avoid Serial interference during test flushing
     Serial.flush();
     digitalWrite(LED_BUILTIN, HIGH);
@@ -45,11 +49,12 @@ void setup() {
     Serial.println("PJON not running - bus.strategy.can_start() returns false");
   } else {
     bus.begin();
-    bus.send_repeatedly(50, "X", 1, 1000000); // Send B to device 44 every second
+    bus.send_repeatedly(50, "X", 1, 1000000); // Send X to device 50 every second
     Serial.println("PJON bus is running");
   }
 }
 
 void loop() {
   bus.update();
+  bus.receive(1000);
 };
