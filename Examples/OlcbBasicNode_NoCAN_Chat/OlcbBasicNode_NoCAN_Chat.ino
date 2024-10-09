@@ -35,10 +35,13 @@ int req_index = 0;
 bool parse_id = true;
 bool initialized = false;
 uint8_t recipient = 0;
+int count = 0;
 
 void receiver_function(uint8_t *payload, uint16_t length, const PJON_Packet_Info &packet_info) {
   if(payload[0] == 'X') {
-    Serial.println("BLINK");
+    count++;
+    Serial.print("BLINK ");
+    Serial.println(count);
     Serial.flush();
     digitalWrite(LED_BUILTIN, HIGH);
     delay(30);
