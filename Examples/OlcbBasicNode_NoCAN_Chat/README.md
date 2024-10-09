@@ -2,6 +2,10 @@
 
 This sketch demonstrates most of the functionality of this library. Changed to work with no CAN connection.
 
+This is an experimental version testing the PJON connection by exchanging a single character 'X' with another module. This causes each to blink the on board LED.
+
+TEMPORARILY I have restored the use of Serial as that is needed to transmit the Olcb data. 
+
 * It implements 2 inputs and 2 outputs
 * It uses ButtonLED library to implement an input and output on one pin
 * It shows how to write a CDI description
