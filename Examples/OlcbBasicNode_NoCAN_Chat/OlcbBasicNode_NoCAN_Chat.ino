@@ -38,8 +38,8 @@ uint8_t recipient = 0;
 
 void receiver_function(uint8_t *payload, uint16_t length, const PJON_Packet_Info &packet_info) {
   if(payload[0] == 'X') {
-    //Serial.println("BLINK");
-    //Serial.flush();
+    Serial.println("BLINK");
+    Serial.flush();
     digitalWrite(LED_BUILTIN, HIGH);
     delay(30);
     digitalWrite(LED_BUILTIN, LOW);
@@ -390,6 +390,7 @@ void setup() {
 void loop() {
   
   // PJON
+  bus.update();
   bus.receive(1000);
 
   bool activity = Olcb_process();     // System processing happens here, with callbacks for app action.
