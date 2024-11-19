@@ -69,7 +69,16 @@
             #define OlcbCanClass McpCan
             #define Can McpCan
         #endif // NO_CAN
-
+    #elif defined(AVR_NANO_4809_328MODE) // Arduino NANO EVERY in 328 simulation mode (experimental)
+        #ifdef ENABLE_MESSAGE_PRAGMAS
+            #pragma message("ATMega 4809 in 328 mode selected")
+        #endif
+        #ifndef NO_CAN
+            #include "MCP2515/MCPcan.h"
+            #define OlcbCanClass McpCan
+            #define Can McpCan
+        #endif // NO_CAN
+    
     // Sanguino
     #elif defined(__AVR_ATmega644__) || defined(__AVR_ATmega644P__) || defined(__AVR_ATmega1284P__)
         #ifdef ENABLE_MESSAGE_PRAGMAS
@@ -198,7 +207,7 @@
         #endif // NOCAN
 
     #else
-        #pragma messge "No processor detected"
+        #pragma message "No processor detected"
         #define reboot
 
     #endif // CANlibrary_h
